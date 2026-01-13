@@ -7,20 +7,21 @@
 
   <style>
     :root{
-      /* KV Tết Boulevard (từ file KV) */
-      --red:#C1272D;        /* Đỏ trầm chủ đạo */
-      --red2:#D93B49;       /* Đỏ nhấn */
-      --coral:#F38480;      /* Cam đào */
-      --paper1:#FFF6D4;     /* Nền giấy */
-      --paper2:#FFEDDF;     /* Kem hồng */
+      /* KV Tết Boulevard */
+      --red:#C1272D;
+      --red2:#D93B49;
+      --coral:#F38480;
+      --paper1:#FFF6D4;
+      --paper2:#FFEDDF;
       --pink:#FAC5C1;
 
       --ink:#1a1a1a;
-      --radius:18px;
-      --shadow: 0 18px 40px rgba(0,0,0,.25);
+      --radius:16px;
+      --shadow: 0 16px 36px rgba(0,0,0,.24);
     }
 
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -38,13 +39,13 @@
       overflow-x: hidden;
     }
 
-    /* Pattern Tết mờ phía sau (opacity ~ 4–6%) */
+    /* Pattern Tết mờ (≈3.5%) */
     body:before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .05; /* ~5% */
+      opacity: .035;
       background-image:
         radial-gradient(circle at 12px 12px, rgba(255,246,212,.95) 2px, transparent 2px),
         radial-gradient(circle at 38px 38px, rgba(250,197,193,.95) 2px, transparent 2px);
@@ -53,7 +54,6 @@
       z-index: 0;
     }
 
-    /* lớp highlight nhẹ kiểu “giấy / KV” */
     body:after{
       content:"";
       position: fixed;
@@ -67,7 +67,7 @@
 
     .wrap{
       width:min(900px, 96vw);
-      padding: 20px 18px 22px;
+      padding: 18px 16px 22px;
       position: relative;
       z-index: 1;
     }
@@ -80,19 +80,22 @@
       margin-bottom:10px;
       opacity:.98;
     }
+
     .brand img{
       width:54px;
       height:54px;
       object-fit:contain;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
     }
+
     .brand .line{
       width:1px; height:32px;
       background: rgba(255,255,255,.22);
     }
+
     .brand .text{
-      font-weight:700;
-      letter-spacing:.8px;
+      font-weight:800;
+      letter-spacing:.9px;
       font-size:14px;
       color:rgba(255,255,255,.92);
       text-transform:uppercase;
@@ -105,6 +108,7 @@
       letter-spacing: .6px;
       text-transform: uppercase;
     }
+
     .sub{
       text-align:center;
       margin: 0 0 18px;
@@ -119,75 +123,77 @@
       gap: 12px;
     }
 
-    /* --- Card: “lì xì” --- */
+    /* Card - mỏng & sang hơn */
     .card{
       position:relative;
       border-radius: var(--radius);
-      padding: 18px 12px;
+      padding: 18px 16px;
       cursor:pointer;
       user-select:none;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 8px 20px rgba(0,0,0,.14);
       overflow:hidden;
       transform: translateZ(0);
       transition: transform .15s ease, box-shadow .15s ease;
     }
+
     .card:hover{
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+      box-shadow: 0 12px 26px rgba(0,0,0,.18);
     }
 
-    /* viền vàng/coral mảnh */
     .card:before{
       content:"";
       position:absolute;
       inset:10px;
-      border-radius: 14px;
-      border: 1px solid rgba(243,132,128,.55);
+      border-radius: 12px;
+      border: 1px solid rgba(243,132,128,.45);
       pointer-events:none;
-      opacity:.75;
+      opacity:.6;
     }
 
     .num{
-      font-weight:700;
+      font-weight:800;
       font-size: 14px;
-      color: rgba(255,255,255,.9);
-      letter-spacing: .4px;
-    }
-    .label{
-      margin-top: 8px;
-      font-weight: 700;
-      font-size: 15px;
-      color:#fff;
+      color: rgba(255,255,255,.92);
+      letter-spacing: .35px;
     }
 
-    /* Nắp lì xì (open animation) */
+    .label{
+      margin-top: 8px;
+      font-weight:600;
+      font-size: 14px;
+      color: rgba(255,255,255,.95);
+      opacity: .92;
+    }
+
+    /* Nắp lì xì */
     .flap{
       position:absolute;
       left:0; right:0; top:0;
       height:54%;
       background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      border-bottom: 1px solid rgba(255,255,255,.12);
+      border-bottom: 1px solid rgba(255,255,255,.10);
       transform-origin: top center;
       transform: rotateX(0deg);
       transition: transform .55s cubic-bezier(.2,.9,.2,1);
       pointer-events:none;
     }
 
-    /* Con dấu = đồng xu / sticker (coin.png) */
+    /* Đồng xu / sticker: lệch phải, giữa card */
     .seal{
       position:absolute;
-      left:50%;
-      top: calc(54% - 18px);
-      transform: translateX(-50%);
-      width:44px;
-      height:44px;
+      right:18px;
+      top:50%;
+      transform: translateY(-50%);
+      width:42px;
+      height:42px;
       border-radius:999px;
       background: var(--paper1);
-      border: 2px solid rgba(255,255,255,.20);
-      box-shadow: 0 8px 18px rgba(0,0,0,.22);
+      border: 1.5px solid rgba(255,255,255,.18);
+      box-shadow: 0 8px 18px rgba(0,0,0,.16);
       pointer-events:none;
 
       background-image: url("coin.png");
@@ -196,19 +202,20 @@
       background-position: center;
     }
 
-    /* trạng thái sau khi mở */
+    /* Sau khi mở */
     .card.open .flap{ transform: rotateX(155deg); }
-    .card.open{ box-shadow: 0 18px 40px rgba(0,0,0,.28); }
+    .card.open{ box-shadow: 0 16px 34px rgba(0,0,0,.22); }
 
     /* Đồng xu xoay nhẹ khi mở */
     .card.open .seal{
       animation: coinSpin .65s ease-in-out;
       transform-origin: center;
     }
+
     @keyframes coinSpin{
-      0%   { transform: translateX(-50%) rotate(0deg) scale(1); }
-      55%  { transform: translateX(-50%) rotate(14deg) scale(1.04); }
-      100% { transform: translateX(-50%) rotate(0deg) scale(1); }
+      0%   { transform: translateY(-50%) rotate(0deg) scale(1); }
+      55%  { transform: translateY(-50%) rotate(14deg) scale(1.04); }
+      100% { transform: translateY(-50%) rotate(0deg) scale(1); }
     }
 
     .card.locked{
@@ -216,7 +223,7 @@
       pointer-events:none;
     }
 
-    /* --- Modal “quẻ xăm” --- */
+    /* Modal quẻ */
     .overlay{
       position:fixed;
       inset:0;
@@ -244,6 +251,7 @@
       opacity: 0;
       animation: pop .38s ease forwards;
     }
+
     @keyframes pop{
       to { transform: translateY(0) scale(1); opacity:1; }
     }
@@ -255,13 +263,15 @@
       gap:10px;
       margin-bottom: 10px;
     }
+
     .tag{
       font-size:12px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.8px;
       text-transform:uppercase;
       color: rgba(255,255,255,.88);
     }
+
     .close{
       appearance:none;
       border:none;
@@ -271,7 +281,7 @@
       border-radius: 12px;
       padding: 8px 10px;
       cursor:pointer;
-      font-weight:700;
+      font-weight:800;
     }
 
     .paper{
@@ -283,6 +293,7 @@
       overflow:hidden;
       border: 1px solid rgba(0,0,0,.06);
     }
+
     .paper:before{
       content:"";
       position:absolute;
@@ -296,7 +307,7 @@
 
     .paper .title{
       position:relative;
-      font-weight:900;
+      font-weight:1000;
       letter-spacing: .6px;
       color: var(--red2);
       text-transform: uppercase;
@@ -304,12 +315,12 @@
       margin-bottom: 10px;
     }
 
-    /* Dòng “Khai Xuân Gieo Lộc” hiển thị trước 0.5s */
+    /* “Khai Xuân Gieo Lộc” hiện trước 0.5s */
     .paper .pre{
       position:relative;
       display:inline-block;
       font-weight:1000;
-      letter-spacing:.8px;
+      letter-spacing:.85px;
       text-transform: uppercase;
       color: var(--red);
       font-size: 15px;
@@ -323,6 +334,7 @@
       transform: translateY(6px);
       animation: preIn .22s ease forwards;
     }
+
     @keyframes preIn{
       to { opacity:1; transform: translateY(0); }
     }
@@ -349,7 +361,14 @@
       color: rgba(0,0,0,.55);
     }
 
-    /* Confetti (pháo giấy) */
+    .foot{
+      text-align:center;
+      margin-top:14px;
+      font-size:12px;
+      color: rgba(255,255,255,.75);
+    }
+
+    /* Confetti */
     .confetti{
       position: fixed;
       inset: 0;
@@ -359,6 +378,7 @@
       display:none;
     }
     .confetti.show{ display:block; }
+
     .confetti i{
       position:absolute;
       width:10px; height:16px;
@@ -367,15 +387,9 @@
       animation: fall 1.35s ease-in forwards;
       border-radius: 3px;
     }
+
     @keyframes fall{
       to { transform: translateY(110vh) rotate(380deg); opacity:1; }
-    }
-
-    .foot{
-      text-align:center;
-      margin-top:14px;
-      font-size:12px;
-      color: rgba(255,255,255,.75);
     }
 
     @media (max-width: 720px){
@@ -389,8 +403,11 @@
 <body>
   <div class="wrap">
     <div class="brand">
-      <!-- Đặt file logo cùng thư mục và rename thành logo.png -->
-      <img src="logo.png" alt="Boulevard logo" />
+      <img src="logo.png" alt="Boulevard logo"
+           onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';" />
+      <div id="brandFallback" style="display:none;font-weight:900;letter-spacing:.9px;text-transform:uppercase;">
+        Boulevard
+      </div>
       <div class="line"></div>
       <div class="text">Boulevard of Happiness</div>
     </div>
@@ -421,7 +438,6 @@
   <div class="confetti" id="confetti"></div>
 
 <script>
-  // 12 THÔNG ĐIỆP – RANDOM
   const MESSAGES = [
     "Tin mình đi, bạn làm được nhiều hơn bạn nghĩ đó.",
     "Đừng quên khen mình mỗi khi hoàn thành một việc nhỏ. Bạn xứng đáng được ghi nhận.",
@@ -465,7 +481,7 @@
     if (opened) return;
     opened = true;
 
-    // “Mở lì xì”
+    // Mở lì xì
     card.classList.add("open");
 
     // Random thông điệp
@@ -476,11 +492,10 @@
     card.classList.remove("locked");
     card.style.opacity = "1";
 
-    // Hiện modal sau một nhịp mở nắp
+    // Hiện modal sau một nhịp
     setTimeout(() => {
       pickedTag.textContent = `Bạn đã chọn Điều lành số ${boxNumber}`;
 
-      // Reset trạng thái hiển thị message
       messageEl.classList.remove("show");
       messageEl.textContent = "";
       noteEl.textContent = "";
@@ -488,10 +503,10 @@
       overlay.classList.add("show");
       overlay.setAttribute("aria-hidden", "false");
 
-      // Pháo giấy
+      // Confetti
       popConfetti();
 
-      // Hiện “Khai Xuân Gieo Lộc” trước, 0.5s sau mới hiện thông điệp
+      // “Khai Xuân Gieo Lộc” trước 0.5s rồi mới hiện thông điệp
       setTimeout(() => {
         messageEl.textContent = selectedMessage;
         messageEl.classList.add("show");
@@ -511,7 +526,6 @@
     if (e.target === overlay) closeModal();
   });
 
-  // Confetti nhẹ (đỏ/coral/kem/trắng)
   function popConfetti(){
     confetti.innerHTML = "";
     confetti.classList.add("show");
