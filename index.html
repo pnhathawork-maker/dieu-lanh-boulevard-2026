@@ -39,7 +39,7 @@
       overflow-x: hidden;
     }
 
-    /* Pattern Tết mờ (≈3.5%) */
+    /* Pattern Tết mờ */
     body:before{
       content:"";
       position: fixed;
@@ -82,7 +82,7 @@
     }
 
     .brand img{
-      width:68px;
+      width:68px; /* desktop */
       height:68px;
       object-fit:contain;
       filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
@@ -123,15 +123,14 @@
       gap: 12px;
     }
 
-    /* Card - mỏng & sang hơn */
+    /* Card */
     .card{
       position:relative;
       border-radius: var(--radius);
-      padding: 18px 46px 18px 16px;
+      padding: 18px 46px 18px 16px; /* chừa chỗ sticker */
       cursor:pointer;
       user-select:none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
       border: 1px solid rgba(255,255,255,.14);
       box-shadow: 0 8px 20px rgba(0,0,0,.14);
       overflow:hidden;
@@ -182,13 +181,13 @@
       pointer-events:none;
     }
 
-    /* Đồng xu / sticker: lệch phải, giữa card */
+    /* Sticker/đồng xu */
     .seal{
       position:absolute;
       right:16px;
       top:50%;
       transform: translateY(-50%);
-      width:34px;
+      width:34px; /* desktop */
       height:34px;
       border-radius:999px;
       background: var(--paper1);
@@ -223,7 +222,7 @@
       pointer-events:none;
     }
 
-    /* Modal quẻ */
+    /* Modal */
     .overlay{
       position:fixed;
       inset:0;
@@ -243,334 +242,4 @@
         radial-gradient(900px 400px at 50% -10%, rgba(243,132,128,.22), transparent 55%),
         linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border: 1px solid rgba(255,255,255,.18);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      position:relative;
-      overflow:hidden;
-      transform: translateY(16px) scale(.98);
-      opacity: 0;
-      animation: pop .38s ease forwards;
-    }
-
-    @keyframes pop{
-      to { transform: translateY(0) scale(1); opacity:1; }
-    }
-
-    .fortune-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom: 10px;
-    }
-
-    .tag{
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      color: rgba(255,255,255,.88);
-    }
-
-    .close{
-      appearance:none;
-      border:none;
-      background: rgba(255,255,255,.10);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius: 12px;
-      padding: 8px 10px;
-      cursor:pointer;
-      font-weight:800;
-    }
-
-    .paper{
-      background: linear-gradient(180deg, var(--paper1), var(--paper2));
-      color: var(--ink);
-      border-radius: 18px;
-      padding: 18px 16px;
-      position:relative;
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.06);
-    }
-
-    .paper:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.03), transparent 40%),
-        repeating-linear-gradient(0deg, rgba(0,0,0,.03), rgba(0,0,0,.03) 1px, transparent 1px, transparent 22px);
-      opacity:.55;
-      pointer-events:none;
-    }
-
-    .paper .title{
-      position:relative;
-      font-weight:1000;
-      letter-spacing: .6px;
-      color: var(--red2);
-      text-transform: uppercase;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    /* “Khai Xuân Gieo Lộc” hiện trước 0.5s */
-    .paper .pre{
-      position:relative;
-      display:inline-block;
-      font-weight:1000;
-      letter-spacing:.85px;
-      text-transform: uppercase;
-      color: var(--red);
-      font-size: 15px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(217, 59, 73, .10);
-      border: 1px solid rgba(217, 59, 73, .20);
-      margin-bottom: 12px;
-
-      opacity: 0;
-      transform: translateY(6px);
-      animation: preIn .22s ease forwards;
-    }
-
-    @keyframes preIn{
-      to { opacity:1; transform: translateY(0); }
-    }
-
-    .paper .msg{
-      position:relative;
-      font-size: 17px;
-      line-height: 1.6;
-      font-weight: 650;
-
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity .28s ease, transform .28s ease;
-    }
-    .paper .msg.show{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .paper .note{
-      position:relative;
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(0,0,0,.55);
-    }
-
-    .foot{
-      text-align:center;
-      margin-top:14px;
-      font-size:12px;
-      color: rgba(255,255,255,.75);
-    }
-
-    /* Confetti */
-    .confetti{
-      position: fixed;
-      inset: 0;
-      pointer-events:none;
-      overflow:hidden;
-      z-index: 60;
-      display:none;
-    }
-    .confetti.show{ display:block; }
-
-    .confetti i{
-      position:absolute;
-      width:10px; height:16px;
-      opacity:.9;
-      top:-20px;
-      animation: fall 1.35s ease-in forwards;
-      border-radius: 3px;
-    }
-
-    @keyframes fall{
-      to { transform: translateY(110vh) rotate(380deg); opacity:1; }
-    }
-
-    @media (max-width: 720px){
-      .grid{ grid-template-columns: repeat(2, 1fr); }
-      .brand img{ width:56px; height:56px; }
-      h1{ font-size:20px; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="wrap">
-    <div class="brand">
-      <img src="logo.png" alt="Boulevard logo"
-           onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';" />
-      <div id="brandFallback" style="display:none;font-weight:900;letter-spacing:.9px;text-transform:uppercase;">
-        Boulevard
-      </div>
-      <div class="line"></div>
-      <div class="text">Boulevard of Happiness</div>
-    </div>
-
-    <h1>“ĐIỀU LÀNH” SẼ ĐẾN VỚI BẠN TRONG NĂM 2026</h1>
-    <div class="sub">Chạm vào một ô bất kỳ để “mở lì xì” và nhận thông điệp ngẫu nhiên dành riêng cho bạn.</div>
-
-    <div class="grid" id="grid"></div>
-    <div class="foot">Khai Xuân Gieo Lộc 2026</div>
-  </div>
-
-  <div class="overlay" id="overlay" aria-hidden="true">
-    <div class="fortune" role="dialog" aria-modal="true">
-      <div class="fortune-head">
-        <div class="tag" id="pickedTag">Điều lành</div>
-        <button class="close" id="closeBtn" type="button">Đóng</button>
-      </div>
-
-      <div class="paper">
-        <div class="title">Thông điệp của bạn</div>
-        <div class="pre" id="preLine">Khai Xuân Gieo Lộc</div>
-        <div class="msg" id="message"></div>
-        <div class="note" id="note"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="confetti" id="confetti"></div>
-
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-  try {
-    const MESSAGES = [
-      'Tin mình đi, bạn làm được nhiều hơn bạn nghĩ đó. Chỉ là chưa tới lúc khoe, khoe sớm quá người ta tưởng bạn nổ 😌.',
-      'Hoàn thành một việc nhỏ cũng là chiến công đó. Nhớ tự khen mình, kẻo công sức buồn 😗.',
-      'Bạn thử nhìn lại coi. Bạn đã đi xa hơn cái ngày từng ngồi than "chắc tui không làm nổi đâu" nhiều lắm rồi đó 🫶.',
-      'Năm nay "dọn dẹp" lại mọi thứ nha. Dọn phòng, dọn lòng, dọn luôn mấy chuyện sít rịt và "reset" lại bản thân với một version mới 😎.',
-      'Đừng thấy người ta nộp bài là điền đại đáp án nha. Năm nay bạn chơi hệ "chậm mà chắc", làm từ từ mà trúng đích 😌.',
-      'Đây là năm để bạn nói chuyện nhiều hơn đó. Biết đâu nói chuyện vu vơ mà tìm thấy những điều bất ngờ ✨.',
-      '2026 có khả năng cao là năm được thương đàng hoàng. Ai thương nửa vời là cứ cho out hết nha 🥲.',
-      'Mọi nỗ lực của bạn không mất đi đâu cả. Đừng nghi ngờ bản thân, anh em mình cứ thế thôi hẹ hẹ 🫶.',
-      'Năm nay đừng bỏ qua trực giác của bạn nha, nếu người khác làm được thì cứ nhờ họ làm dùm 🤘.',
-      'Tự tin lên! Đây là năm bạn được bật đèn spotlight đó. Đừng trốn nữa ✨.',
-      'Trái tim mở đúng lúc là người đúng tự xuất hiện. Đừng nóng vội, chuyện hay thường tới trễ xíu mà 😌.',
-      'Muốn thanh xuân đẹp... thì đừng có mà yêu đương 😎.'
-    ];
-
-    const grid = document.getElementById("grid");
-    const overlay = document.getElementById("overlay");
-    const closeBtn = document.getElementById("closeBtn");
-    const messageEl = document.getElementById("message");
-    const noteEl = document.getElementById("note");
-    const pickedTag = document.getElementById("pickedTag");
-    const confetti = document.getElementById("confetti");
-
-    if (!grid) throw new Error("Không tìm thấy #grid (div chứa ô).");
-    if (!overlay || !closeBtn || !messageEl || !noteEl || !pickedTag || !confetti) {
-      throw new Error("Thiếu một số phần tử modal (#overlay/#closeBtn/#message/#note...).");
-    }
-
-    let opened = false;
-
-    // Clear grid phòng trường hợp bị render lặp
-    grid.innerHTML = "";
-
-    // Tạo 12 ô
-    for (let i = 1; i <= 12; i++) {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="flap"></div>
-        <div class="seal" aria-hidden="true"></div>
-        <div class="num">Điều lành số ${i}</div>
-        <div class="label">Chạm để mở</div>
-      `;
-      card.addEventListener("click", () => openEnvelope(card, i));
-      grid.appendChild(card);
-    }
-
-    function openEnvelope(card, boxNumber){
-      if (opened) return;
-      opened = true;
-
-      card.classList.add("open");
-
-      const selectedMessage = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
-
-      [...grid.children].forEach(el => el.classList.add("locked"));
-      card.classList.remove("locked");
-      card.style.opacity = "1";
-
-      setTimeout(() => {
-        pickedTag.textContent = `Bạn đã chọn Điều lành số ${boxNumber}`;
-
-        messageEl.classList.remove("show");
-        messageEl.textContent = "";
-        noteEl.textContent = "";
-
-        overlay.classList.add("show");
-        overlay.setAttribute("aria-hidden", "false");
-
-        popConfetti();
-
-        setTimeout(() => {
-          messageEl.textContent = selectedMessage;
-          messageEl.classList.add("show");
-          noteEl.textContent = "Niềm vui nhỏ, dành riêng cho bạn trong năm 2026.";
-        }, 500);
-
-      }, 420);
-    }
-
-    function closeModal(){
-      overlay.classList.remove("show");
-      overlay.setAttribute("aria-hidden", "true");
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeModal();
-    });
-
-    function popConfetti(){
-      confetti.innerHTML = "";
-      confetti.classList.add("show");
-
-      const colors = ["#FFF6D4", "#FFEDDF", "#FAC5C1", "#F38480", "#D93B49"];
-      const count = 28;
-
-      for (let i=0; i<count; i++){
-        const piece = document.createElement("i");
-        const left = Math.random() * 100;
-        const delay = Math.random() * 0.12;
-        const dur = 1.05 + Math.random() * 0.55;
-        const sizeW = 6 + Math.random() * 8;
-        const sizeH = 10 + Math.random() * 12;
-
-        piece.style.left = left + "vw";
-        piece.style.animationDelay = delay + "s";
-        piece.style.animationDuration = dur + "s";
-        piece.style.width = sizeW + "px";
-        piece.style.height = sizeH + "px";
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.transform = `rotate(${Math.random()*120}deg)`;
-
-        confetti.appendChild(piece);
-      }
-
-      setTimeout(() => confetti.classList.remove("show"), 1700);
-    }
-
-  } catch (err) {
-    // Nếu còn lỗi, sẽ hiện popup để bạn biết ngay
-    alert("Lỗi JavaScript: " + err.message);
-    console.error(err);
-  }
-});
-</script>
-
-</body>
-</html>
-
-
-
-
-
+      box-shadow:
